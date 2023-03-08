@@ -1,0 +1,14 @@
+scrapy
+scrapy-html-storage
+gcloud
+google-cloud-storage
+pandas
+genson
+jsonschema
+selenium
+gcsfs
+selenium-wire
+google-cloud-pubsub
+scrapy-useragents
+gspread
+openpyxl==3.0.10
