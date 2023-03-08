@@ -1,0 +1,13 @@
+steps:
+- name: 'python:3.9'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    if [[ -n $(git diff --name-only $COMMIT_SHA HEAD -- flexit/) ]]; then
+      python flexit/main.py
+    fi
+    if [[ -n $(git diff --name-only $COMMIT_SHA HEAD -- local/) ]]; then
+      python local/main.py
+    fi
+
