@@ -1,19 +1,25 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
+  - 'fetch'
+  - 'origin'
+  - 'master'
+
+- name: 'gcr.io/cloud-builders/git'
+  args:
   - 'diff'
   - '--name-only'
-  - 'HEAD~1'
+  - 'origin/master'
 
 - name: 'gcr.io/cloud-builders/bash'
   entrypoint: 'bash'
   args:
   - '-c'
   - |
-    if git diff --name-only HEAD~1 | grep -q "cloud_build-POC/CLoud_Build/docker"; then
-      echo 'hello docker folder'
-    elif git diff --name-only HEAD~1 | grep -q "cloud_build-POC/CLoud_Build/test"; then
-      echo 'hello test folder'
+    if git diff --name-only origin/master | grep -q "/Demo-App/demoweb/css"; then
+      echo 'hello css'
+    elif git diff --name-only origin/master | grep -q "/Demo-App/demoweb/js"; then
+      echo 'hello js'
     else
-      echo 'NO CHanges HAPPENED IN FOLDERS'
+      echo 'no changes'
     fi
