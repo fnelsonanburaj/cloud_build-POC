@@ -1,3 +1,3 @@
 FROM alpine
-COPY quickstarts.sh /
+COPY quickstart.sh /
 CMD ["/quickstart.sh"]
