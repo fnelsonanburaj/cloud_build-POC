@@ -2,18 +2,27 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'init'
+  volumes:
+  - name: 'workspace'
+    path: '/workspace'
 
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'fetch'
   - 'origin'
   - 'main'
+  volumes:
+  - name: 'workspace'
+    path: '/workspace'
 
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'diff'
   - '--name-only'
   - 'origin/main'
+  volumes:
+  - name: 'workspace'
+    path: '/workspace'
 
 - name: 'ubuntu'
   entrypoint: 'bash'
@@ -33,3 +42,6 @@ steps:
     else
       echo 'no changes'
     fi
+  volumes:
+  - name: 'workspace'
+    path: '/workspace'
