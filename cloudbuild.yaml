@@ -1,11 +1,32 @@
 steps:
-- name: python
+- name: 'gcr.io/cloud-builders/git'
+  args:
+  - 'fetch'
+  - 'origin'
+  - 'main'
+
+- name: 'gcr.io/cloud-builders/git'
+  args:
+  - 'diff'
+  - '--name-only'
+  - 'origin/main'
+
+- name: 'ubuntu'
   entrypoint: 'bash'
-  args: 
+  args:
   - '-c'
   - |
-    if [[ -n $(git diff --name-only $COMMIT_SHA HEAD -- fandru/cloud_build-POC/CLoud_Build/test/) ]]; then
-      echo "Changes detected"
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+      echo 'Not inside a Git repository'
+      exit 1
+    fi
+
+    changes=$(git diff --name-only origin/main)
+    echo "$changes" 
+    if echo "$changes" | grep -q "/CLoud_Build/docker"; then
+      echo 'hello css'
+    elif echo "$changes" | grep -q "/CLoud_Build/test"; then
+      echo 'hello js'
     else
-      echo "No changes detected"
+      echo 'no changes'
     fi
