@@ -21,7 +21,7 @@ steps:
       exit 1
     fi
 
-    changes=$(git diff --name-only origin/main)
+    changes=$(git branch -a)
     echo "changes are $changes" 
     if echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//docker"; then
       echo 'hello css'
