@@ -15,6 +15,6 @@ steps:
       exit 1
     fi
 
-     changes=$(git log --name-only --pretty=format: origin/main..HEAD)
+     hanges=$(cat "${_CHECK_CHANGES_OUTPUT}" | tr '\n' ' ')
     echo "Changes are: $changes"
     
