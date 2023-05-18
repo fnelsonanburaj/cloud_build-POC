@@ -18,12 +18,3 @@ steps:
     changes=$(git diff --name-only origin/main)
     echo "Changes are: $changes"
     
-    if echo "$changes" | grep -q "CLoud_Build/docker/"; then
-      echo 'Folder 1 changes:'
-      echo "$changes" | grep "folder1/"
-    fi
-    
-    if echo "$changes" | grep -q "CLoud_Build/test/"; then
-      echo 'Folder 2 changes:'
-      echo "$changes" | grep "folder2/"
-    fi
