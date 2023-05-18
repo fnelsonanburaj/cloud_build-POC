@@ -5,7 +5,7 @@ steps:
   - '-c'
   - |
     git init .
-    git remote add origin https://github.com/fandru/cloud_build-POC  # Replace <repository-url> with your repository URL
+    git remote add origin https://github.com/fandru/cloud_build-POC
   dir: 'workspace'
 
 - name: 'gcr.io/cloud-builders/git'
