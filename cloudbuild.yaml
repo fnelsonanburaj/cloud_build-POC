@@ -1,4 +1,10 @@
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['fetch', 'origin', 'main']
+
+- name: 'gcr.io/cloud-builders/git'
+  args: ['diff', '--name-only', 'origin/main']
+
 - name: 'python'
   entrypoint: 'bash'
   args:
@@ -10,11 +16,14 @@ steps:
     fi
 
     changes=$(git diff --name-only origin/main)
-    echo "changes are $changes" 
-    if echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//docker"; then
-      echo 'hello css'
-    elif echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//test"; then
-      echo 'hello js'
-    else
-      echo 'no changes'
+    echo "Changes are: $changes"
+    
+    if echo "$changes" | grep -q "folder1/"; then
+      echo 'Folder 1 changes:'
+      echo "$changes" | grep "folder1/"
+    fi
+    
+    if echo "$changes" | grep -q "folder2/"; then
+      echo 'Folder 2 changes:'
+      echo "$changes" | grep "folder2/"
     fi
