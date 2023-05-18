@@ -4,7 +4,7 @@ steps:
   args: 
   - '-c'
   - |
-    if [[ -n $(git diff --name-only $COMMIT_SHA HEAD -- CLoud_Build/test/) ]]; then
+    if [[ -n $(git diff --name-only $COMMIT_SHA HEAD -- fandru/cloud_build-POC/CLoud_Build/test/) ]]; then
       echo "Changes detected"
     else
       echo "No changes detected"
