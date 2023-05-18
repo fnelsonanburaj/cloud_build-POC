@@ -5,6 +5,7 @@ steps:
   - '-c'
   - |
     git init .
+    git remote add origin <repository-url>  # Replace <repository-url> with your repository URL
   dir: 'workspace'
 
 - name: 'gcr.io/cloud-builders/git'
