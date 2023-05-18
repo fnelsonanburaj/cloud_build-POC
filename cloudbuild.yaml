@@ -1,16 +1,3 @@
-steps:
-- name: 'gcr.io/cloud-builders/git'
-  args:
-  - 'fetch'
-  - 'origin'
-  - 'main'
-
-- name: 'gcr.io/cloud-builders/git'
-  args:
-  - 'diff'
-  - '--name-only'
-  - 'origin/main'
-
 - name: 'python'
   entrypoint: 'bash'
   args:
@@ -21,11 +8,11 @@ steps:
       exit 1
     fi
 
-    changes=$(git branch -a)
+    changes=$(git diff --name-only origin/main)
     echo "changes are $changes" 
-    if echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//docker"; then
+    if echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/docker"; then
       echo 'hello css'
-    elif echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//test"; then
+    elif echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/test"; then
       echo 'hello js'
     else
       echo 'no changes'
