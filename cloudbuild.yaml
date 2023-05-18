@@ -3,13 +3,13 @@ steps:
   args:
   - 'fetch'
   - 'origin'
-  - 'master'
+  - 'main'
 
 - name: 'gcr.io/cloud-builders/git'
   args:
   - 'diff'
   - '--name-only'
-  - 'origin/master'
+  - 'origin/main'
 
 - name: 'python'
   entrypoint: 'bash'
