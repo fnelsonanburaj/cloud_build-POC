@@ -11,7 +11,7 @@ steps:
   - '--name-only'
   - 'origin/main'
 
-- name: 'ubuntu'
+- name: 'python'
   entrypoint: 'bash'
   args:
   - '-c'
