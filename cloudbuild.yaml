@@ -22,7 +22,7 @@ steps:
     fi
 
     changes=$(git diff --name-only origin/main)
-    echo "$changes" 
+    echo "changes are $changes" 
     if echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//docker"; then
       echo 'hello css'
     elif echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//test"; then
