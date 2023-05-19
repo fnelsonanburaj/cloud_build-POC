@@ -13,7 +13,7 @@ steps:
     fi
 
     cd /workspace/repo  # Change to the repository directory
-    changes=$(git diff --name-only origin/main)
+    changes=$(git diff --name-only main origin/main)
     echo "Changes are: $changes"
     
     if echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/docker"; then
