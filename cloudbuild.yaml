@@ -5,6 +5,10 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['diff', '--name-only', 'origin/main..HEAD']
   id: check_changes
+  entrypoint: 'bash'
+  dir: '/workspace'
+  waitFor:
+    - '-'
 
 - name: 'python'
   entrypoint: 'bash'
@@ -16,5 +20,5 @@ steps:
       exit 1
     fi
 
-    changes=$(cat /workspace/$BUILD_ID/check_changes)
+    changes=$(cat /workspace/check_changes)
     echo "Changes are: $changes"
