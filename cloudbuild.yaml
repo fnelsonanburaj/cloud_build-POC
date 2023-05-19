@@ -16,5 +16,5 @@ steps:
       exit 1
     fi
 
-    changes=$(cat "$_CHECK_CHANGES")
+    changes=$(gcloud builds step logs "$BUILD_ID" --filter="STEP_ID=$_CHECK_CHANGES" --format='value(textPayload)' | tail -n +2)
     echo "Changes are: $changes"
