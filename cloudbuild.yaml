@@ -3,9 +3,10 @@ steps:
   args: ['fetch', 'origin', 'main']
 
 - name: 'gcr.io/cloud-builders/git'
-  args: ['diff', '--name-only', 'origin/main']
+  args: ['diff', '--name-only', 'origin/main..HEAD']
+  id: check_changes
 
-- name: 'python' 
+- name: 'python'
   entrypoint: 'bash'
   args:
   - '-c'
@@ -15,5 +16,5 @@ steps:
       exit 1
     fi
 
-     changes=$(cat "${_CHECK_CHANGES_OUTPUT}" | tr '\n' ' ')
+    changes=$(cat "$_CHECK_CHANGES")
     echo "Changes are: $changes"
