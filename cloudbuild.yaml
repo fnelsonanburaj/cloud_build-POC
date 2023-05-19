@@ -16,5 +16,5 @@ steps:
       exit 1
     fi
 
-    changes=$(cat "$BUILDER_OUTPUT" | tail -n +2)
+    changes=$(cat /workspace/$BUILD_ID/check_changes)
     echo "Changes are: $changes"
