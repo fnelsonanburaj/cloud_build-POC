@@ -25,4 +25,3 @@ steps:
 
 options:
   machineType: N1_HIGHCPU_8
-  serviceAccountEmail: fnelsonanburaj.26@gmail.com@cloud-build.iam.gserviceaccount.com
