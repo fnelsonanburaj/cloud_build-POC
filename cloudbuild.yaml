@@ -1,4 +1,7 @@
 steps:
+- name: 'gcr.io/cloud-builders/git'
+  args: ['clone', 'https://github.com/fandru/cloud_build-POC', '/workspace/repo']
+
 - name: 'python'
   entrypoint: 'bash'
   args:
@@ -9,12 +12,15 @@ steps:
       exit 1
     fi
 
+    cd /workspace/repo  # Change to the repository directory
     changes=$(git diff --name-only origin/main)
-    echo "changes are $changes" 
-    if echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//docker"; then
+    echo "Changes are: $changes"
+    
+    if echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/docker"; then
       echo 'hello css'
-    elif echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//test"; then
+    elif echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/test"; then
       echo 'hello js'
     else
       echo 'no changes'
     fi
+
