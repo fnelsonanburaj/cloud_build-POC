@@ -5,7 +5,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['diff', '--name-only', 'origin/main']
 
-- name: 'python'
+- name: 'python' 
   entrypoint: 'bash'
   args:
   - '-c'
@@ -15,6 +15,5 @@ steps:
       exit 1
     fi
 
-     hanges=$(cat "${_CHECK_CHANGES_OUTPUT}" | tr '\n' ' ')
+     changes=$(cat "${_CHECK_CHANGES_OUTPUT}" | tr '\n' ' ')
     echo "Changes are: $changes"
-    
