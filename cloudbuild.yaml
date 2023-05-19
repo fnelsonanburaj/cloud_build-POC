@@ -1,15 +1,4 @@
 steps:
-- name: 'gcr.io/cloud-builders/git'
-  args: ['fetch', 'origin', 'main']
-
-- name: 'gcr.io/cloud-builders/git'
-  args: ['diff', '--name-only', 'origin/main..HEAD']
-  id: check_changes
-  entrypoint: 'bash'
-  dir: '/workspace'
-  waitFor:
-    - '-'
-
 - name: 'python'
   entrypoint: 'bash'
   args:
@@ -20,8 +9,12 @@ steps:
       exit 1
     fi
 
-    changes=$(cat /workspace/check_changes)
-    echo "Changes are: $changes"
-
-options:
-  machineType: N1_HIGHCPU_8
+    changes=$(git diff --name-only origin/main)
+    echo "changes are $changes" 
+    if echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//docker"; then
+      echo 'hello css'
+    elif echo "$changes" | grep -q "fandru//cloud_build-POC//CLoud_Build//test"; then
+      echo 'hello js'
+    else
+      echo 'no changes'
+    fi
