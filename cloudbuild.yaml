@@ -10,3 +10,10 @@ steps:
       - 'diff'
       - '--name-only'
       - 'origin/main'
+
+  - name: 'gcr.io/cloud-builders/git'
+    args:
+      - 'ls-files'
+      - '--modified'
+      - '--others'
+      - '--exclude-standard'
