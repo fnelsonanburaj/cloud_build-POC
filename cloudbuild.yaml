@@ -1,7 +1,3 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['ls-files']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-image', 'CLoud_Build/docker/']
-images:
-- 'gcr.io/$PROJECT_ID/my-image'
