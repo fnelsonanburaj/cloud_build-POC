@@ -1,9 +1,1 @@
-steps:
-  - name: 'docker.io/library/alpine:latest'
-    entrypoint: 'ash'
-    args:
-      - '-c'
-      - |
-        apk update && apk add git
-        changes=$(git diff --name-only origin/main)
-        echo "Changes are: $changes"
+s
