@@ -1,26 +1,3 @@
 steps:
-- name: 'gcr.io/cloud-builders/git'
-  args: ['clone', 'https://github.com/fandru/cloud_build-POC', '/workspace/repo']
-
-- name: 'python'
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-      echo 'Not inside a Git repository'
-      exit 1
-    fi
-
-    cd /workspace/repo  # Change to the repository directory
-    changes=$(git diff --name-only origin/main)
-    echo "Changes are: $changes"
-    
-    if echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/docker"; then
-      echo 'hello css'
-    elif echo "$changes" | grep -q "fandru/cloud_build-POC/CLoud_Build/test"; then
-      echo 'hello js'
-    else
-      echo 'no changes'
-    fi
-
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['ls-files']
