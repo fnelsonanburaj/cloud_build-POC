@@ -1,1 +1,3 @@
-s
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['ls-files']
