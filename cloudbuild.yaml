@@ -1,19 +1,7 @@
 steps:
   - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
     args:
-      - 'fetch'
-      - 'origin'
-      - 'main'
-
-  - name: 'gcr.io/cloud-builders/git'
-    args:
-      - 'diff'
-      - '--name-only'
-      - 'origin/main'
-
-  - name: 'gcr.io/cloud-builders/git'
-    args:
-      - 'ls-files'
-      - '--modified'
-      - '--others'
-      - '--exclude-standard'
+      - '-c'
+      - |
+        git diff-tree --no-commit-id --name-only -r FETCH_HEAD

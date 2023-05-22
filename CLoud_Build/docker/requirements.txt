@@ -11,4 +11,4 @@ selenium-wire
 google-cloud-pubsub
 scrapy-useragents
 gspread
-openpyxl==3.0.21
+openpyxl==3.0.22
