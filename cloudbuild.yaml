@@ -14,3 +14,9 @@ steps:
           echo "anburaj"
         fi
 
+  - name: 'gcr.io/cloud-builders/bash'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Changes: $changes" >> output.txt
