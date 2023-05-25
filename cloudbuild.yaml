@@ -1,0 +1,16 @@
+steps:
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['fetch', 'origin', 'main']
+
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        changes=$(git diff --name-only origin/main)
+        if echo "$changes" | grep -q "^CLoud_Build/docker/"; then
+          echo "nelson"
+        elif echo "$changes" | grep -q "^CLoud_Build/test/"; then
+          echo "anburaj"
+        fi
+
