@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file to the container
+# Copy the requirements file to the containers
 COPY requirements.txt .
 
 # Install the dependencies
