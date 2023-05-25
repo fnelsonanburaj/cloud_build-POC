@@ -1,6 +1,9 @@
 steps:
   - name: 'gcr.io/cloud-builders/git'
-    args: ['fetch', 'origin', 'main']
+    args:
+      - 'fetch'
+      - 'origin'
+      - 'main'
 
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: 'bash'
@@ -8,15 +11,10 @@ steps:
       - '-c'
       - |
         changes=$(git diff --name-only origin/main)
-        if echo "$changes" | grep -q "^CLoud_Build/docker/"; then
-          echo "nelson"
-        elif echo "$changes" | grep -q "^CLoud_Build/test/"; then
-          echo "anburaj f"
+        if echo "$changes" | grep -q "^folder1/"; then
+          echo "Triggered by changes in folder1"
+        elif echo "$changes" | grep -q "^folder2/"; then
+          echo "Triggered by changes in folder2"
+        else
+          echo "No changes in the specified folders"
         fi
-
-  - name: 'gcr.io/cloud-builders/bash'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        echo "Changes: $changes" >> output.txt
