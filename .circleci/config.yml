@@ -13,6 +13,7 @@ jobs:
           path: ~/repo
       - run: choco upgrade chocolatey -y
       - run: choco search msbuild
+      - run: choco install visualstudio2019buildtools 16.11.26.0
       
 
 
