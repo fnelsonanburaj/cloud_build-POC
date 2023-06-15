@@ -11,7 +11,8 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-      - run: choco install msbuild -y
+      - run: choco install microsoft-build-tools
+      
 
 workflows:
   build:
