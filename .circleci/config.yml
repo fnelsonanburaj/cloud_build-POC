@@ -11,8 +11,7 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-
-      - run: choco install msbuild -y --allow-unofficial
+      - run: choco install msbuild -y
 
 workflows:
   build:
