@@ -12,11 +12,15 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-      - run: choco upgrade chocolatey
-      - run: choco install visualstudio2022buildtools --version=117.6.2.0          
-      
-      
+          
 
+      - run:
+          name: Install Visual Studio tools
+          command: |
+            choco install visualstudio2022buildtools --version=117.6.2.0 -y || exit 0
+            choco install microsoft-build-tools -y || exit 0
+            choco install msbuild -y || exit 0
+            choco install visualstudio2019-workload-visualstudioextensionbuildtools -y || exit 0
         
 workflows:
   build:
