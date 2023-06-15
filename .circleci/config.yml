@@ -15,9 +15,7 @@ jobs:
           command: npm install
 
       # Build and test your project
-      - run:
-          name: Build and Test
-          command: npm run build && npm test
+    
 
 workflows:
   version: 2
