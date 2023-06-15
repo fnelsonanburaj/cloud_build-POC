@@ -1,25 +1,47 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.2.0
+  windows: circleci/windows@2.0
+
 
 jobs:
   build:
-    executor: node/default
+    description: Setup and run application tests
+    executor:
+      name: windows/default
     steps:
-      - checkout
+      - checkout:
+          path: ~/repo
 
-      # Install dependencies
       - run:
-          name: Install Dependencies
-          command: npm install
+          name: Install Git
+          command: |
+            choco install git -y
+            refreshenv
 
-      # Build and test your project
-    
+      - run: choco install gitversion.portable
+      
+      - run:
+          name: Clone Repository
+          command: |
+            git config --global user.email "fnelsonanburaj.26@gmail.com"
+            git config --global user.name "fnelsonanburaj"
+            git clone --branch circleci-project-setup https://github.com/fnelsonanburaj/cloud_build-POC.git ~/repo
 
+      - run:
+          name: Install PowerShell
+          command: |
+            choco install powershell -y
+            refreshenv
+      - run: choco install netfx-4.7.2-devpack
+      - run: dotnet --list-sdks
+      - run: choco install dotnetcore-sdk --version=3.1.426
+      
+
+        
 workflows:
-  version: 2
-  build-deploy:
+  build:
     jobs:
       - build
 
+      
