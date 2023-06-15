@@ -11,10 +11,10 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-      - run: choco upgrade chocolatey -y
-      - run: choco search msbuild
-      - run: choco install visualstudio2019buildtools 16.11.26.0
-      
+      - run:
+         name: Download MSBuild
+         command: |
+             Invoke-WebRequest -Uri 'https://aka.ms/buildtools' -OutFile 'vs_buildtools.exe'
 
 
       
