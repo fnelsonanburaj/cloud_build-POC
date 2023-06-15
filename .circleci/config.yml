@@ -20,7 +20,7 @@ jobs:
             refreshenv
 
       - run: choco install gitversion.portable
-      - run: choco install visualstudio2022buildtools
+      - run: choco install visualstudio2022buildtools --version=117.6.2.0
       
       
 
