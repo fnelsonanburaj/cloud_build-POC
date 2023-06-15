@@ -11,15 +11,13 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-      - run:
-         name: Download MSBuild
-         command: |
-             Invoke-WebRequest -Uri 'https://aka.ms/buildtools' -OutFile 'vs_buildtools.exe'
+
 
       - run:
-          name: Install MSBuild
-          command: |
-              Start-Process -FilePath '.\vs_buildtools.exe' -ArgumentList '--quiet --wait'
+         name: Download and Install Visual Studio Build Tools
+         command: |
+            Invoke-WebRequest -Uri 'https://aka.ms/buildtools' -OutFile 'vs_buildtools.exe'
+            Start-Process -Wait -FilePath 'vs_buildtools.exe' -ArgumentList '--quiet --wait'
       
 
 
