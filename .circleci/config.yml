@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   windows: circleci/windows@2.0
 
+
 jobs:
   build:
     description: Setup and run application tests
@@ -12,20 +13,10 @@ jobs:
       - checkout:
           path: ~/repo
 
-
-      - run:
-         name: Download and Install Visual Studio Build Tools
-         command: |
-            Invoke-WebRequest -Uri 'https://aka.ms/buildtools' -OutFile 'vs_buildtools.exe'
-            Start-Process -Wait -FilePath 'vs_buildtools.exe' -ArgumentList '--quiet --wait'
-      
-
-
-      
-
-      
-
-      
+      - run: |
+          $currentDirectory = Get-Location
+          Invoke-WebRequest -Uri 'https://aka.ms/buildtools' -OutFile "$currentDirectory\vs_buildtools.exe"
+          Start-Process -Wait -FilePath "$currentDirectory\vs_buildtools.exe" -ArgumentList '--quiet --wait'
 
 workflows:
   build:
