@@ -17,46 +17,10 @@ jobs:
       - run:
           name: Install Visual Studio tools
           command: |
-            choco install visualstudio2022buildtools --version=117.6.2.0 -y
-            if ($LASTEXITCODE -ne 0) { exit 0 }
         
-            choco install microsoft-build-tools -y
-            if ($LASTEXITCODE -ne 0) { exit 0 }
-        
+          
             choco install msbuild -y
-            if ($LASTEXITCODE -ne 0) { exit 0 }
         
-            choco install visualstudio2019-workload-visualstudioextensionbuildtools -y
-            if ($LASTEXITCODE -ne 0) { exit 0 }
-
-      - run:
-          name: Check installation status
-          command: |
-            $toolsInstalled = $false
-
-            if (Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools") {
-            Write-Host "Visual Studio 2022 Build Tools installed"
-            $toolsInstalled = $true
-            }
-            elseif (Test-Path "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools") {
-            Write-Host "Visual Studio 2019 Build Tools installed"
-            $toolsInstalled = $true
-            }
-            if (Get-Command msbuild -ErrorAction SilentlyContinue) {
-            Write-Host "msbuild installed"
-            $toolsInstalled = $true
-            }
-
-            if (Get-Command microsoft-build-tools -ErrorAction SilentlyContinue) {
-            Write-Host "microsoft-build-tools installed"
-            $toolsInstalled = $true
-            }
-
-            if (!$toolsInstalled) {
-            Write-Host "None of the specified tools installed"
-            exit 1
-            }            
-
         
 workflows:
   build:
