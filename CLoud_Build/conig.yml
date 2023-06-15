@@ -1,0 +1,57 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.0
+
+
+jobs:
+  build:
+    description: Setup and run application tests
+    executor:
+      name: windows/default
+    steps:
+      - checkout:
+          path: ~/repo
+
+      - run:
+          name: Install Git
+          command: |
+            choco install git -y
+            refreshenv
+
+      - run: choco install gitversion.portable
+      
+      - run:
+          name: Clone Repository
+          command: |
+            git config --global user.email "fnelsonanburaj.26@gmail.com"
+            git config --global user.name "fnelsonanburaj"
+            git clone --branch circleci-project-setup https://github.com/fnelsonanburaj/cloud_build-POC.git ~/repo
+
+      - run:
+          name: Install PowerShell
+          command: |
+            choco install powershell -y
+            refreshenv
+      - run: choco install netfx-4.7.2-devpack
+      - run: dotnet --list-sdks
+      - run: choco install dotnetcore-sdk --version=3.1.426
+      - run:
+          name: Build Packages
+          command: |
+            cd ~/repo
+            powershell -File build_packages.ps1
+      - run:
+            name: Build and Test
+            command: |
+              dotnet restore 
+              dotnet build
+              dotnet test     
+
+        
+workflows:
+  build:
+    jobs:
+      - build
+
+      
