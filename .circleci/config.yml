@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   windows: circleci/windows@2.0
 
-
 jobs:
   build:
     description: Setup and run application tests
@@ -12,14 +11,10 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-          
 
-      - run: choco install msbuild -y
-        
-        
+      - run: choco install msbuild -y --allow-unofficial
+
 workflows:
   build:
     jobs:
       - build
-
-      
