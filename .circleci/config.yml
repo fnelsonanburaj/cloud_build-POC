@@ -20,22 +20,8 @@ jobs:
             refreshenv
 
       - run: choco install gitversion.portable
+      - run: choco install visualstudio2022buildtools
       
-      - run:
-          name: Clone Repository
-          command: |
-            git config --global user.email "fnelsonanburaj.26@gmail.com"
-            git config --global user.name "fnelsonanburaj"
-            git clone --branch circleci-project-setup https://github.com/fnelsonanburaj/cloud_build-POC.git ~/repo
-
-      - run:
-          name: Install PowerShell
-          command: |
-            choco install powershell -y
-            refreshenv
-      - run: choco install netfx-4.7.2-devpack
-      - run: dotnet --list-sdks
-      - run: choco install dotnetcore-sdk --version=3.1.426
       
 
         
