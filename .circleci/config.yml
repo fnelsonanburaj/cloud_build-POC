@@ -42,6 +42,15 @@ jobs:
             Write-Host "Visual Studio 2019 Build Tools installed"
             $toolsInstalled = $true
             }
+            if (Get-Command msbuild -ErrorAction SilentlyContinue) {
+            Write-Host "msbuild installed"
+            $toolsInstalled = $true
+            }
+
+            if (Get-Command microsoft-build-tools -ErrorAction SilentlyContinue) {
+            Write-Host "microsoft-build-tools installed"
+            $toolsInstalled = $true
+            }
 
             if (!$toolsInstalled) {
             Write-Host "None of the specified tools installed"
