@@ -12,15 +12,8 @@ jobs:
     steps:
       - checkout:
           path: ~/repo
-
-      - run:
-          name: Install Git
-          command: |
-            choco install git -y
-            refreshenv
-
-      - run: choco install gitversion.portable
-      - run: choco install visualstudio2022buildtools --version=117.6.2.0
+      - run: choco upgrade chocolatey
+      - run: choco install visualstudio2022buildtools --version=117.6.2.0          
       
       
 
