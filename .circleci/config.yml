@@ -14,12 +14,7 @@ jobs:
           path: ~/repo
           
 
-      - run:
-          name: Install Visual Studio tools
-          command: |
-        
-          
-            choco install msbuild -y
+      - run: choco install msbuild -y
         
         
 workflows:
