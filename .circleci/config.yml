@@ -13,7 +13,7 @@ jobs:
       - checkout:
           path: ~/repo
 
-      - run: choco install visualstudio2019buildtools 
+      - run: choco install -y visualstudio2019buildtools 
 
 workflows:
   build:
